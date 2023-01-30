@@ -2,6 +2,8 @@ import React from "react";
 import Slider from "../Slider/Slider";
 import img1 from '../../images/3-1.jpg'
 import img2 from '../../images/3-2.jpg'
+import img3 from '../../images/3-3.jpg'
+import img4 from '../../images/3-4.jfif'
 import { Grid, Hidden, makeStyles } from "@material-ui/core";
 import ViewProductCard from "../Slider/ViewProductCard";
 
@@ -29,6 +31,16 @@ const BridesWear = () => {
         },
         {
             image: img2,
+            heading: "LEHNGA SET'S",
+            btnTitle: "Shop Now"
+        },
+        {
+            image: img3,
+            heading: "LEHNGA SET'S",
+            btnTitle: "Shop Now"
+        },
+        {
+            image: img4,
             heading: "LEHNGA SET'S",
             btnTitle: "Shop Now"
         },

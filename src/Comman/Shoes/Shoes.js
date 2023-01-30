@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "../Slider/Slider";
-import img1 from '../../images/4-1.jpg'
+// import img1 from '../../images/4-1.jpg'
 import img2 from '../../images/4-2.jpg'
 import { Grid, makeStyles } from "@material-ui/core";
 import ViewProductCard from "../Slider/ViewProductCard";
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 const Shoes = () => {
     const classes = useStyles();
     const sliderData = [
-        {
-            image: img1,
-            heading: "Bandhgalas",
-            btnTitle:"Shop Now"
-        },
+        // {
+        //     image: img1,
+        //     heading: "Bandhgalas",
+        //     btnTitle:"Shop Now"
+        // },
         {
             image: img2,
             heading: "Bandhgalas",
