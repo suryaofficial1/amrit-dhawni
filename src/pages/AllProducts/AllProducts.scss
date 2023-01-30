@@ -1,0 +1,59 @@
+.featuredProducts {
+    margin: 0px 40px;
+    @media (max-width: 600px) {
+      margin: 10px 30px;
+    }
+  
+    
+    .top {
+      // display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      @media (max-width: 600px) {
+       flex-direction: column;
+      }
+    
+  
+      h1 {
+        flex: 2;
+        text-transform: capitalize;
+      }
+  
+      p{
+        flex:3;
+        color:gray
+      }
+    }
+  
+    .bottom{
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+  }
+  .FilterText{
+    flex:3;
+    color:gray;
+    right: 15px;
+    padding-bottom:20px
+  }
+
+  .noFoundHeading{
+    @media (max-width: 600px) {
+      font-size: 22px;
+    }
+  }
+  .noFoundHeading2{
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
+  }
+  .noFoundImg{
+    @media (max-width: 600px) {
+      width: 70%
+    }
+  }

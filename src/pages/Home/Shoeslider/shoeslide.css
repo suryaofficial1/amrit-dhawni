@@ -1,0 +1,95 @@
+
+.shoe-container{
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: "-20%";
+}
+.shoe-container .swiper{
+    width: 80%;
+    height: 18rem;
+    position: unset;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* z-index: 1; */
+}
+
+.shoe-container .top{
+    align-items: center;
+    margin-bottom: 50px;
+    /* width: 40%; */
+    margin: 0 auto;
+    color: black;
+    /* padding-bottom: 50px; */
+}
+.shoe-container .swiper-slide{
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+.shoe-container .swiper-button-prev{
+    left: 6rem;
+  }
+  
+  .shoe-container .swiper-button-next{
+    right: 6rem;
+  }
+  
+  .shoe-container .swiper-button-prev, .swiper-button-next{
+    color: #000;
+    background-size: 10px 10px !important;
+    /* size: 10px; */
+    font-size: 10px;
+  }
+
+  .left-s{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .name{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name>:nth-child(1){
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .name >:nth-child(2){
+    font-size: 0.7rem;
+  }
+
+  .left-s>:nth-child(2){
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .left-s>:nth-child(3)
+  {
+    font-size: 0.6rem;
+    border: 1px solid var(--black);
+    padding: 5px 10px;
+    width: max-content;
+    border-radius: 15px;
+    
+  }
+
+  .img-p{
+    transform: rotate(-20deg);
+    position: absolute;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    bottom: -20%;
+}
+.shoesHeading{
+  font-size: 25px;
+}

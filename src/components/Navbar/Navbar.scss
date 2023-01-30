@@ -1,0 +1,168 @@
+.navbar {
+  height: 80px;
+
+  .wrapper {
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .item {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    .center {
+      font-size: 30px;
+      letter-spacing: 2px;
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+
+      .icons {
+        display: flex;
+        gap: 15px;
+        color: #777;
+        cursor: pointer;
+
+        .cartIcon {
+          position: relative;
+
+          span {
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #2879fe;
+            color: white;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.navbar-container {
+ 
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar-mobile {
+  // height: 60px;
+  position: relative;
+  margin-bottom: 30px;
+  margin-top:20px
+}
+
+// .logo {
+// }
+
+.menu-icon {
+  display: none;
+  // margin-top: -20px;
+  margin-right: 15px;
+}
+
+
+
+
+.nav-elements ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+
+.nav-elements ul a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2f234f;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  // .nav-elements ul li:not(:last-child) {
+  //   margin-right: 30px;
+  // }
+}
+
+@media (max-width: 600px) {
+
+  // .container{
+  //   position: relative;
+  // }
+  
+  .nav-elements {
+    z-index: 9999; /* set a high z-index value */
+    position: absolute; /* position the navbar absolutely */
+    // top: 0; /* position the navbar at the top */
+    // left: 0; /* align the navbar to the left */
+    width: 100%; /* make the navbar take up the full width of the page */
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    float: right;
+  }
+
+  .nav-elements {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: #e1edea;
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .nav-elements.active {
+    width: 100%;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin-right: unset;
+    margin-top: 22px;
+  }
+  .menuGroup{
+    width:98%
+  }
+  .menuitem{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 3px 5px;
+  }
+  // .menuGroup li:hover {
+  //   background-color: #000;
+  // }
+}
+
+.linkk{
+  width: 110px;
+  height: 80px;
+
+}

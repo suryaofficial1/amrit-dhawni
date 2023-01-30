@@ -1,0 +1,189 @@
+
+.sliderContainer{
+  width:100%;
+  // height: 90vh;
+  position: relative;
+  // margin: auto;
+  overflow: hidden;
+}
+
+
+// .slide {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 95vh;
+//   opacity: 0;
+//   transform: translateX(-50%);
+//   transition: all 0.5s ease;
+// }
+
+@media screen and (min-width: 600px) {
+  .slide img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.slide img {
+  // width: 100%;
+  height: 100%;
+}
+
+.current {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content {
+  position: absolute;
+  top: 23rem;
+  left: 5rem;
+  opacity: 0;
+  width: 50%;
+  color: #fff;
+  padding: 3rem;
+  animation: slide-up 1s ease 0.5s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+}
+
+@keyframes slide-up {
+  0% {
+    visibility: visible;
+    top: 23rem;
+  }
+  100% {
+    visibility: visible;
+    top: 17rem;
+  }
+}
+.titleImgContainer{
+    position: relative;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    width: 80%;
+  }
+}
+
+.content > * {
+  color: #fff;
+  margin-bottom: 1rem;
+ 
+}
+
+.current .content {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease;
+//   text-align-last: justify;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-60%, 35%);
+
+}
+@media screen and (max-width: 600px) {
+    .current .content {
+        text-align-last: justify;
+        transform: translate(-35%, -15%);
+    }
+  }
+
+.arrow {
+  color: #393535 !important ;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 999;
+}
+
+@media screen and (max-width: 600px) {
+    .arrow{
+        display:none
+    }
+  }
+
+.next {
+  top: 35%;
+  right: 1.5rem;
+}
+.prev {
+  top: 35%;
+  left: 1.5rem;
+}
+
+hr {
+  height: 2px;
+  background: white;
+  width: 50%;
+}
+
+  .title{
+    font-size: 85px;
+    margin-right: -150px;
+    font-family: "Poppins";
+  }
+  @media screen and (max-width: 600px) {
+    .current .title {
+        font-size: 40px;
+        font-family: "Poppins";
+        margin-left: -35px;
+    }
+  }
+  .centerContainer{
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .centerTextTitle{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+  .imageTitle{
+    font-size: 45px;
+    font-family: "Poppins";
+    color:white !important
+  }
+  @media screen and (max-width: 600px) {
+    .imageTitle {
+        font-size: 17px;
+        font-family: "Poppins";
+        
+    }
+  }
+  .shopNowButton{
+     padding: 11px 40px 11px 40px;
+    border:1.5px solid;
+    border-radius: 10px;
+    font-family: "Poppins";
+    background-color: transparent;
+    color:white;
+    font-weight: bolder;
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;    
+  }
+    .shopNowButton:hover{
+      background-color: #040904;
+      color: white;
+    }
+  @media screen and (max-width: 600px) {
+    .shopNowButton {
+        font-size: 13px;
+        font-family: "Poppins";
+        padding: 6px 20px 6px 20px;
+        font-weight: 100;
+        
+    }
+  }
