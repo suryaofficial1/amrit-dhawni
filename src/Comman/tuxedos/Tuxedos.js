@@ -7,7 +7,7 @@ const Tuxedos = () => {
    const sliderData = [
     {
       image: img1,
-      heading: "Ornamented Tuxedos",
+      heading: "Bandhgalas",
       btnTitle:"Shop Now"
     },
     {

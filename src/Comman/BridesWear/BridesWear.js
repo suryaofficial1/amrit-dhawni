@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "../Slider/Slider";
-import img1 from '../../images/3-1.jpg'
-import img2 from '../../images/3-2.jpg'
+// import img1 from '../../images/3-1.jpg'
+// import img2 from '../../images/3-2.jpg'
 import img3 from '../../images/3-3.jpg'
 import img4 from '../../images/3-4.jfif'
 import { Grid, Hidden, makeStyles } from "@material-ui/core";
@@ -24,24 +24,24 @@ const useStyles = makeStyles((theme) => ({
 const BridesWear = () => {
     const classes = useStyles();
     const sliderData = [
-        {
-            image: img1,
-            heading: "LEHNGA SET'S",
-            btnTitle: "Shop Now"
-        },
-        {
-            image: img2,
-            heading: "LEHNGA SET'S",
-            btnTitle: "Shop Now"
-        },
+        // {
+        //     image: img1,
+        //     heading: "LEHNGA SET'S",
+        //     btnTitle: "Shop Now"
+        // },
+        // {
+        //     image: img2,
+        //     heading: "LEHNGA SET'S",
+        //     btnTitle: "Shop Now"
+        // },
         {
             image: img3,
-            heading: "LEHNGA SET'S",
+            heading: "Lehnga Set's",
             btnTitle: "Shop Now"
         },
         {
             image: img4,
-            heading: "LEHNGA SET'S",
+            heading: "Cocktail Gown's",
             btnTitle: "Shop Now"
         },
     ];

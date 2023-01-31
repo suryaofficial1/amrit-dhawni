@@ -68,17 +68,17 @@ const Slider = (props) => {
           <div class="centerContainer">
           {props.sliderData.map((slide, index) => {
             return (
-                <div className={index === currentSlide ? "slide current" : "slide"}
-                        key={index}> 
-                   {index === currentSlide && (
-                    <img src={slide.image} alt="slide" style={{width:"100%"}}/>
-                    )}
-                    <div class="centerTextTitle">
-                      {slide.heading != '' ? <h2 className="imageTitle">{slide.heading}</h2> :''}
-                      <button className="shopNowButton">   <Link  className="link" to="/">{slide.btnTitle !=''? slide.btnTitle :'Shop Now'} </Link></button>
-                    </div>
-
+              <div className={index === currentSlide ? "slide current" : "slide"}
+                key={index}>
+                {index === currentSlide && (
+                  <img src={slide.image} alt="slide" style={{ width: "100%" }} />
+                )}
+                <div class="centerTextTitle">
+                  {slide.heading && <h2 className="imageTitle">{index === currentSlide ? slide.heading : ''}</h2>}
+                  {index === currentSlide ?  <Link className="link"  to="/"> <button className="shopNowButton">  {slide.btnTitle} </button> </Link>: ''}
                 </div>
+
+              </div>
             )
           })}
           {/* <img src="https://i.ibb.co/58Mq6Mb/slide1.jpg" alt="Snow" style={{width:"100%"}}/>

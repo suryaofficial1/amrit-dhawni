@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: 3,
         fontFamily: "Cardo",
         fontWeight: "bold",
-        color:grey[500],
+        color:"#515151 !important",
         [theme.breakpoints.down("sm")]: {
             fontSize: 20,
             letterSpacing: 2,
@@ -278,14 +278,14 @@ function Header() {
                     ))}
                     </div>
                     <Typography align="center" variant="h6" color="inherit" className={classes.title}>
-                    <Link  className="link" to="/">   Amrit Dawani </Link>
+                    <Link  style={{color:"#515151",fontFamily: "Cardo"}} to="/" >   Amrit Dawani </Link>
                     </Typography>
                     <div className="cartIcon" onClick={() => handleCard()}>
                         <ShoppingCartOutlinedIcon />
                         <span>{products.length}</span></div>
                 </Toolbar>
             </AppBar>
-            <div>{open && <Cart close={handleCard} />}</div>
+            <div >{open && <Cart close={handleCard} />}</div>
         </div>
     );
 }

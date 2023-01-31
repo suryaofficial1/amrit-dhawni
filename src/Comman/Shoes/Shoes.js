@@ -31,7 +31,7 @@ const Shoes = () => {
         // },
         {
             image: img2,
-            heading: "Bandhgalas",
+            heading: "FOOTWEAR",
             btnTitle:"Shop Now"
         },
     ];
@@ -46,7 +46,7 @@ const Shoes = () => {
 
             </Grid>
             <Grid item xs={12} md={4} className={classes.viewProduct}>
-                <ViewProductCard title="SHOES" submit={handleClick} btnTitle="View More" />
+                <ViewProductCard title="FOOTWEAR" submit={handleClick} btnTitle="View More" />
             </Grid>
         </Grid>
     )

@@ -7,6 +7,7 @@ import "./Slider.scss";
 const useStyles = makeStyles((theme) => ({
     title: {
         fontSize: theme.spacing(4.5),
+        fontFamily:"Roboto Thin",
         [theme.breakpoints.down('sm')]: {
             fontSize: theme.spacing(3),
         }
@@ -40,7 +41,7 @@ const ViewProductCard = (props) => {
                 <Typography variant="body1" style={{ paddingLeft: 35, paddingRight: 35 }}>{props.desc}</Typography>
             </Grid>}
             <Grid item sm={12} display="flex" direction="column">
-                <Link className="link" to="/allproducts">   <button className={classes.viewMoreBtn}
+                <Link className="link"  to="/allproducts">   <button className={classes.viewMoreBtn}
                     onClick={(e) => props.submit(e, props.title)}> {props.btnTitle} </button></Link>
             </Grid>
         </Grid>
