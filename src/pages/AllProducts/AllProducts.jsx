@@ -15,61 +15,61 @@ import { useParams } from "react-router-dom";
 
 const AllProducts = ({ type }) => {
   const catId = parseInt(useParams().id);
-  
+
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState(null);
   const [page, setPage] = React.useState(0);
-  const [filter, setFilter] = React.useState({ sort: '', price: '', categoryId: '', maxPrice: '',subCategoryId:[] });
+  const [filter, setFilter] = React.useState({ sort: '', price: '', categoryId: '', maxPrice: '', subCategoryId: [] });
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
 
   const getUrl = (filter) => {
     let mainUrl = `/products?populate=*`
-    let subUrl =``
+    let subUrl = ``
     if (filter.sort != '' && filter.categoryId == undefined && filter.maxPrice == 0) {
       return mainUrl + `&sort=price:${filter.sort}`
     }
-     else if (filter.categoryId > 0 && filter.sort === '' && filter.maxPrice == 0) {
-      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    else if (filter.categoryId > 0 && filter.sort === '' && filter.maxPrice == 0) {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}`
     }
-     else if (filter.categoryId == undefined && filter.sort === '' && filter.maxPrice != 0) {
+    else if (filter.categoryId == undefined && filter.sort === '' && filter.maxPrice != 0) {
       return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}`
     }
-     else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice == 0) {
-      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice == 0) {
+      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}`
     }
-     else if (filter.sort != '' && filter.categoryId == undefined && filter.maxPrice != 0) {
+    else if (filter.sort != '' && filter.categoryId == undefined && filter.maxPrice != 0) {
       return mainUrl + `&sort=price:${filter.sort}&[filters][price][$lt]=${filter.maxPrice}`
     }
-     else if (filter.categoryId > 0 && filter.maxPrice != 0 && filter.sort === '') {
-      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
+    else if (filter.categoryId > 0 && filter.maxPrice != 0 && filter.sort === '') {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
     }
-     else if (filter.categoryId > 0 && filter.sort != '' && filter.maxPrice == 0) {
-      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&sort=price:${filter.sort}`
-    } 
+    else if (filter.categoryId > 0 && filter.sort != '' && filter.maxPrice == 0) {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}&sort=price:${filter.sort}`
+    }
     else if (filter.maxPrice != 0 && filter.sort === '' && filter.categoryId == undefined) {
       return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&sort=price:${filter.sort}`
     }
-     else if (filter.maxPrice != 0 && filter.categoryId > 0 && filter.sort === '') {
-      return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    else if (filter.maxPrice != 0 && filter.categoryId > 0 && filter.sort === '') {
+      return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}`
     }
-     else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice > 0) {
-      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
+    else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice > 0) {
+      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
     }
     else if (!isNaN(catId)) {
       return mainUrl + `&[filters][categories][id]=${catId}`
     }
     else {
-      return  mainUrl
+      return mainUrl
     }
-   
+
   }
 
   const fetchAllProduct = async () => {
     try {
       setLoading(true);
-     let url = getUrl(filter)
-      let apiUrl = url.replaceAll(',','')
+      let url = getUrl(filter)
+      let apiUrl = url.replaceAll(',', '')
       await makeRequest.get(apiUrl).then((_res) => {
         if (_res.status === 200) {
           setLoading(false);
@@ -92,8 +92,8 @@ const AllProducts = ({ type }) => {
     setOpen(!open)
   };
 
-  const applyFilter = (sort, categoryId, maxPrice ,subCategoryId) => {
-    setFilter({ ...filter, sort: sort, categoryId: categoryId, maxPrice: maxPrice,subCategoryId:subCategoryId })
+  const applyFilter = (sort, categoryId, maxPrice, subCategoryId) => {
+    setFilter({ ...filter, sort: sort, categoryId: categoryId, maxPrice: maxPrice, subCategoryId: subCategoryId })
     setPage(0)
     setOpen(!open);
   }
@@ -109,15 +109,15 @@ const AllProducts = ({ type }) => {
           suspendisse ultrices gravida. Risus commodo viverra maecenas.
         </p> */}
       </div>
-        <Grid item sm={12} > 
+      <Grid item sm={12} >
         {/* <Button color="inherit" onClick={toggleDrawer} > */}
-          <Typography className="FilterText" align="right" onClick={toggleDrawer}>  Filter <FilterListIcon /></Typography>
-         
+        <Typography className="FilterText" align="right" onClick={toggleDrawer}>  Filter <FilterListIcon /></Typography>
+
         {/* </Button> */}
-        </Grid>
-        <Grid item sm={12}>
-          <Filter open={open} applyFilter={applyFilter} toggleDrawer={toggleDrawer} />
-        </Grid>
+      </Grid>
+      <Grid item sm={12}>
+        <Filter open={open} applyFilter={applyFilter} toggleDrawer={toggleDrawer} />
+      </Grid>
       <Grid container spacing={2}>
         <Grid item md={12}>
           <div className="bottom">
