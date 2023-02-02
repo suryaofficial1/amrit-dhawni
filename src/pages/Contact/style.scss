@@ -31,7 +31,7 @@ input {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 75px;
 }
 
   .container {
@@ -79,5 +79,22 @@ input {
   .contact-listt {
     display: block;
   }
+}
+
+.office{
+  width: 100%;
+  padding: 12px;
+  border-color: #d4c9c9;
+  border-radius: 4px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 

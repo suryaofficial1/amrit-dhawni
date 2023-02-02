@@ -13,7 +13,7 @@ const firebaseConfig = {
   appId: "1:811874670863:web:941f7676bc543a8129867a",
   measurementId: "G-9MB4PV8NFM"
 };
-export const ContactUs = ()=>{
+ const ContactUs = ()=>{
     const [email,setEmail] = useState('')
     const [mobile,setMobile] = useState('')
     const [name,setName] = useState('')
@@ -54,21 +54,28 @@ export const ContactUs = ()=>{
                     <label for="email">Email</label>
                     <input required onChange={e=>setEmail(e.target.value)}  type="email" id="email" placeholder="Your Email" />
                     <label for="mobile">Mobile</label>
-                    <input required onChange={e=>setMobile(e.target.value)} type="number" id="mobile" placeholder="Your Mobile" />
+                    <input required onChange={e => setMobile(e.target.value)} type="number" id="mobile" placeholder="Your Mobile" />
+                    <label for="office">Select Store</label>
+                    <br></br>
+                    <select id="office" name="office" form="office" className="office">
+                        <option value="" disabled selected hidden>Select office...</option>
+                        <option value="indore">Indore</option>
+                        <option value="bhopal">Bhopal</option>
+                    </select>
                     <input onSubmit={submit} type="submit" value="Submit" />
                 </form>
             </div>
             {/* <div className="contact-container">
             <div className="contact-item">
-                <i className="fas fa-phone"></i> 
+                <i className="fas fa-phone"></i>
                 <a href="tel:9644095272" className="contact-link">+91 75669 04500</a>
             </div>
             <div className="contact-item">
-                <i className="fas fa-envelope"></i> 
+                <i className="fas fa-envelope"></i>
                 <a href="mailto:amrit@davani.com" className="contact-link">contact@amritdawani.com</a>
             </div>
             <div className="contact-item">
-                <i className="fas fa-map-marker-alt"></i> 
+                <i className="fas fa-map-marker-alt"></i>
                  19/1, New Palasia, Indore (M.P.) 452001
             </div> */}
         {/* </div> */}
@@ -91,3 +98,4 @@ export const ContactUs = ()=>{
         </div>
     )
 }
+export default ContactUs

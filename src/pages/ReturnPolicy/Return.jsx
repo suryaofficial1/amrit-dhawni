@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Return = () => {
   return (
-    <Container>
+    <Container style={{paddingTop:70}}>
       <Row className="justify-content-center">
         <Col xs={15} md={15}>
           <h1 className="text-center font-weight-bold text-black">Return and Exchange Policy</h1>

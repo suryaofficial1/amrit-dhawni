@@ -4,6 +4,8 @@ import Slider from "../Slider/Slider";
 import img2 from '../../images/4-2.jpg'
 import { Grid, makeStyles } from "@material-ui/core";
 import ViewProductCard from "../Slider/ViewProductCard";
+import { useNavigate } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     groomContainer: {
@@ -23,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Shoes = () => {
     const classes = useStyles();
+    const navigate = useNavigate();
+
     const sliderData = [
         // {
         //     image: img1,
@@ -36,8 +40,8 @@ const Shoes = () => {
         },
     ];
     const handleClick = (e, title) => {
-        console.log("e ->", e + "title-.", title)
-    }
+        navigate("/allproducts/2")  
+      }
 
     return (
         <Grid container spacing={2} className={classes.groomContainer}>

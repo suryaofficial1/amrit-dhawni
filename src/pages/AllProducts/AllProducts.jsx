@@ -10,49 +10,67 @@ import ShareIcons from "../../components/shareIcons/ShareIcons";
 import NotFound from "./NotFound";
 import Filter from "../../Comman/Filter/Filter";
 import { Typography } from "@material-ui/core";
+import { useParams } from "react-router-dom";
 
 
 const AllProducts = ({ type }) => {
+  const catId = parseInt(useParams().id);
+  
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState(null);
   const [page, setPage] = React.useState(0);
-  const [filter, setFilter] = React.useState({ sort: '', price: '', category: '', maxPrice: '' });
+  const [filter, setFilter] = React.useState({ sort: '', price: '', categoryId: '', maxPrice: '',subCategoryId:[] });
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
 
   const getUrl = (filter) => {
     let mainUrl = `/products?populate=*`
-    if (filter.sort != '' && filter.category == undefined && filter.maxPrice == 0) {
+    let subUrl =``
+    if (filter.sort != '' && filter.categoryId == undefined && filter.maxPrice == 0) {
       return mainUrl + `&sort=price:${filter.sort}`
-    } else if (filter.category > 0 && filter.sort === '' && filter.maxPrice == 0) {
-      return mainUrl + `&[filters][categories][id]=${filter.category}`
-    } else if (filter.category == undefined && filter.sort === '' && filter.maxPrice != 0) {
+    }
+     else if (filter.categoryId > 0 && filter.sort === '' && filter.maxPrice == 0) {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    }
+     else if (filter.categoryId == undefined && filter.sort === '' && filter.maxPrice != 0) {
       return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}`
-    } else if (filter.sort != '' && filter.category > 0 && filter.maxPrice == 0) {
-      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.category}`
-    } else if (filter.sort != '' && filter.category == undefined && filter.maxPrice != 0) {
+    }
+     else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice == 0) {
+      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    }
+     else if (filter.sort != '' && filter.categoryId == undefined && filter.maxPrice != 0) {
       return mainUrl + `&sort=price:${filter.sort}&[filters][price][$lt]=${filter.maxPrice}`
-    } else if (filter.category > 0 && filter.maxPrice != 0 && filter.sort === '') {
-      return mainUrl + `&[filters][categories][id]=${filter.category}&[filters][price][$lt]=${filter.maxPrice}`
-    } else if (filter.category > 0 && filter.sort != '' && filter.maxPrice == 0) {
-      return mainUrl + `&[filters][categories][id]=${filter.category}&sort=price:${filter.sort}`
-    } else if (filter.maxPrice != 0 && filter.sort === '' && filter.category == undefined) {
+    }
+     else if (filter.categoryId > 0 && filter.maxPrice != 0 && filter.sort === '') {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
+    }
+     else if (filter.categoryId > 0 && filter.sort != '' && filter.maxPrice == 0) {
+      return mainUrl + `&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&sort=price:${filter.sort}`
+    } 
+    else if (filter.maxPrice != 0 && filter.sort === '' && filter.categoryId == undefined) {
       return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&sort=price:${filter.sort}`
-    } else if (filter.maxPrice != 0 && filter.category > 0 && filter.sort === '') {
-      return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&[filters][categories][id]=${filter.category}`
-    } else if (filter.sort != '' && filter.category > 0 && filter.maxPrice > 0) {
-      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.category}&[filters][price][$lt]=${filter.maxPrice}`
+    }
+     else if (filter.maxPrice != 0 && filter.categoryId > 0 && filter.sort === '') {
+      return mainUrl + `&[filters][price][$lt]=${filter.maxPrice}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}`
+    }
+     else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice > 0) {
+      return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) =>`&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
+    }
+    else if (!isNaN(catId)) {
+      return mainUrl + `&[filters][categories][id]=${catId}`
     }
     else {
-      return mainUrl
+      return  mainUrl
     }
+   
   }
 
   const fetchAllProduct = async () => {
     try {
       setLoading(true);
-      const url = getUrl(filter)
-      await makeRequest.get(url).then((_res) => {
+     let url = getUrl(filter)
+      let apiUrl = url.replaceAll(',','')
+      await makeRequest.get(apiUrl).then((_res) => {
         if (_res.status === 200) {
           setLoading(false);
           setData(_res.data.data);
@@ -74,8 +92,8 @@ const AllProducts = ({ type }) => {
     setOpen(!open)
   };
 
-  const applyFilter = (sort, category, maxPrice) => {
-    setFilter({ ...filter, sort: sort, category: category, maxPrice: maxPrice })
+  const applyFilter = (sort, categoryId, maxPrice ,subCategoryId) => {
+    setFilter({ ...filter, sort: sort, categoryId: categoryId, maxPrice: maxPrice,subCategoryId:subCategoryId })
     setPage(0)
     setOpen(!open);
   }

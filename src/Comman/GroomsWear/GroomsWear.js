@@ -4,6 +4,8 @@ import img1 from '../../images/2-1.jpg'
 import img2 from '../../images/2-2.jpg'
 import { Grid, makeStyles } from "@material-ui/core";
 import ViewProductCard from "../Slider/ViewProductCard";
+import { useNavigate } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   groomContainer: {
@@ -20,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
 
 const GroomsWear = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   const sliderData = [
     {
       image: img1,
@@ -34,7 +38,7 @@ const GroomsWear = () => {
   ];
 
   const handleClick = (e, title) => {
-    console.log("e ->", e + "title-.", title)
+    navigate("/allproducts/1")  
   }
 
 

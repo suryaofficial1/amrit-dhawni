@@ -16,12 +16,12 @@ const Slider = (props) => {
 
   const nextSlide = () => {
     setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
-    console.log("next");
+    // console.log("next");
   };
 
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
-    console.log("prev");
+    // console.log("prev");
   };
 
   function auto() {
@@ -40,28 +40,7 @@ const Slider = (props) => {
   }, [currentSlide]);
 
   return (
-    // <div className="slider">
-    //   <AiOutlineArrowLeft className="arrow prev" onClick={prevSlide} />
-    //   <AiOutlineArrowRight className="arrow next" onClick={nextSlide} />
-    //   {props.sliderData.map((slide, index) => {
-    //     return (
-    //       <div
-    //         className={index === currentSlide ? "slide current" : "slide"}
-    //         key={index}
-    //       >
-    //         {index === currentSlide && (
-    //           <div className="titleImgContainer">
-    //             <img src={slide.image} alt="slide" className="image" />
-    //             <div className="content">
-    //                 {slide.heading != '' ? <h2 className="title">{slide.heading}</h2> :''}
-    //               <button className="ShopNowBtn">Shop Now</button>
-    //             </div>
-    //           </div>
-    //         )}
-    //       </div>
-    //     );
-    //   })}
-    // </div>
+   
     <div className="sliderContainer">
           <KeyboardArrowLeftIcon color="inherit" className="arrow prev" onClick={prevSlide} />
           <KeyboardArrowRightIcon color="inherit" className="arrow next" onClick={nextSlide} />

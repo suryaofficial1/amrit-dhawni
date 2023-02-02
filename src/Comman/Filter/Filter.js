@@ -6,9 +6,11 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import CloseIcon from '@material-ui/icons/Close';
 import { padding } from '@mui/system';
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
+import { makeRequest } from '../../makeRequest';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -48,18 +50,59 @@ function Filter(props) {
     const [active, setActive] = useState(false);
     const [priceSlid, setPriceSlid] = useState(false);
     const [sortingActive, setSortingActive] = useState(false);
+    const [openSubCate, setOpenSubCategory] = useState(false);
+    const [activeSubCategory, setActiveSubCategory] = useState('');
+    const [subCategory, setSubCategory] = useState([]);
+    const [subCategoryId, setSubCategoryId] = useState([]);
     const catId = parseInt(useParams().id);
     const [maxPrice, setMaxPrice] = useState(0);
     const [sort, setSort] = useState('');
-    const [category, setCategory] = useState();
+    const [category, setCategory] = useState([]);
+    const [categoryId, setCategoryId] = useState(0);
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(false);
 
-    const { data, loading, error } = useFetch(
-        `/categories?*`
-    );
 
-    // const props.toggleDrawer = () => {
-    //     setOpen(!open)
-    // };
+
+    // const { data, loading, error } = useFetch(
+    //     `/categories?*`
+    // );
+
+    const getCategory = async () => {
+        try {
+          setLoading(true);
+          await makeRequest.get(`/categories?*`).then((_res) => {
+            if (_res.status === 200) {
+              setLoading(false);
+              setCategory(_res.data.data);
+            }
+          })
+        } catch (err) {
+          setError(true);
+        }
+        setLoading(false);
+      };
+
+    const getSubCategoryById = async (categoryId) => {
+        try {
+          setLoading(true);
+          await makeRequest.get(`/sub-categories?[filters][categories][id][$eq]=${categoryId}`).then((_res) => {
+            if (_res.status === 200) {
+              setLoading(false);
+              setSubCategory(_res.data.data);
+            }
+          })
+        } catch (err) {
+          setError(true);
+        }
+        setLoading(false);
+      };
+
+      useEffect(() => {
+        getCategory()
+
+    }, []);
+
     const prodCategoryActive = () => {
         setActive(!active)
     };
@@ -79,7 +122,25 @@ function Filter(props) {
     const onPriceChange = (e) => {
         setMaxPrice(e.target.value)
     }
-
+    const openSubCategory = (e, item) => {
+        e.preventDefault();
+        getSubCategoryById(item.id)
+        setActiveSubCategory(item.id)
+        setOpenSubCategory(!openSubCate)
+    }
+    const selectSubCategory= (e, categoryId,subCategory)=>{
+        setCategoryId(categoryId)
+        const value = e.target.value;
+        const isChecked = e.target.checked;
+    
+        setSubCategoryId(
+          isChecked
+            ? [...subCategoryId, value]
+            : subCategoryId.filter((item) => item !== value)
+        );
+        //setSubCategoryId( [...subCategoryId,{ id: subCategory++ } ]);
+    }
+    
 
     const list = () => (<div style={{ background: "hwb(0deg 90% 8%)", height: "100%" }}>
         <Grid container spacing={2} className={classes.list}>
@@ -98,12 +159,34 @@ function Filter(props) {
                 </Grid>
             </Grid>
             {active && <Grid item xs={12} >
-                {data && data?.map((item) => (<FormControl component="fieldset" name="method-of-order" >
-                    <RadioGroup onClick={(e) => { onCategoryChange(e, 'category') }} value={category}>
-                        <FormControlLabel checked={category == item.id} value={item.id} control={<Radio size="small" />} label={item?.attributes?.title} />
-                    </RadioGroup>
-                </FormControl>
+            <Grid container item xs={12}>
+                {category && category?.map((items) => ( <Grid item xs={6} > 
+                    <Grid container item xs={12}>
+                    <Grid item xs={6} onClick={(e) =>{openSubCategory(e,items )}}>
+                        <Typography component="span" variant='subtitle1' float="left">{items?.attributes?.title}</Typography>
+                    </Grid>
+                    <Grid item xs={6} align="right">
+                        <Typography float="right" component="span" align="center" justify="right" variant='subtitle1'>{(activeSubCategory === items.id) && (subCategory.length > 0 && openSubCate) ? "—" : "+"} </Typography>
+                    </Grid>
+                </Grid>
+                    {(activeSubCategory == items.id) && (subCategory.length > 0 && openSubCate)  ? <Grid container item xs={12}>
+                        {(activeSubCategory === items.id) && subCategory?.length != 0 ? subCategory?.map((data) => (<Grid item xs={6}>
+                            <div  key={data.id}>
+                                <input
+                                    type="checkbox"
+                                    id={data?.id}
+                                    value={data?.id}
+                                    onChange={(e) => {selectSubCategory(e,items.id  ,data.id)}}
+                                />
+                                <label htmlFor={data.id}>{data?.attributes?.title}</label>
+                            </div>
+                 </Grid>
+                    )):'Sorry not have any category'}
+                    </Grid>
+                    :''}
+                </Grid>
                 ))}
+                </Grid>
             </Grid>}
             <Grid item xs={12} onClick={priceCategoryActive} >
                 <Grid container item xs={12}>
@@ -148,7 +231,7 @@ function Filter(props) {
 
       <Grid item xs={12} className={classes.appBtn}>
         <Button variant="contained" color="primary"
-          onClick={() => props.applyFilter(sort,category,maxPrice)}
+          onClick={() => props.applyFilter(sort,categoryId,maxPrice,subCategoryId)}
         >Apply</Button>
       </Grid>
         </Grid>
