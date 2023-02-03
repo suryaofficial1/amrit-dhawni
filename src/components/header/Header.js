@@ -119,9 +119,9 @@ function Header() {
     const showAllCate = () => {
         return (<>
             {subcategory != null ? subcategory?.map((category, index) => (<Grid item xs={12} >
-                <StyleTypography>
+                <Link onClick={closeDrawer} className="link" to={`/allproducts/1/${category.id}`}> <StyleTypography>
                     {category.attributes.title}
-                </StyleTypography>
+                </StyleTypography></Link>
             </Grid>
             )) : ''}
         </>)

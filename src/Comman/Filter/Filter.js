@@ -148,6 +148,7 @@ function Filter(props) {
                 <Typography variant='h4' align="right" onClick={props.toggleDrawer}><CloseIcon fontSize='large' /></Typography>
             </Grid>
             <Divider className={classes.divider} />
+            {/* style={{boxShadow: "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%)"}} */}
             <Grid item xs={12} onClick={prodCategoryActive} >
                 <Grid container item xs={12}>
                     <Grid item xs={6} >
@@ -157,7 +158,6 @@ function Filter(props) {
                         <Typography float="right" component="span" align="center" justify="right" variant='subtitle1'>{active ? "—" : "+"} </Typography>
                     </Grid>
                 </Grid>
-            </Grid>
             {active && <Grid item xs={12} >
             <Grid container item xs={12}>
                 {category && category?.map((items) => ( <Grid item xs={6} > 
@@ -188,6 +188,7 @@ function Filter(props) {
                 ))}
                 </Grid>
             </Grid>}
+            </Grid>
             <Grid item xs={12} onClick={priceCategoryActive} >
                 <Grid container item xs={12}>
                     <Grid item xs={6} >
@@ -240,7 +241,6 @@ function Filter(props) {
 
     return (
         <div>
-            {/* <Button onClick={props.toggleDrawer}>Filter</Button> */}
             <SwipeableDrawer
                 anchor="right"
                 open={props.open}

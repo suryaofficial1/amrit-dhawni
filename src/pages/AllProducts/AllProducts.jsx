@@ -14,8 +14,8 @@ import { useParams } from "react-router-dom";
 
 
 const AllProducts = ({ type }) => {
-  const catId = parseInt(useParams().id);
 
+    var {catId, subCatId} = useParams();
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState(null);
   const [page, setPage] = React.useState(0);
@@ -57,7 +57,7 @@ const AllProducts = ({ type }) => {
       return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
     }
     else if (!isNaN(catId)) {
-      return mainUrl + `&[filters][categories][id]=${catId}`
+      return mainUrl + `&[filters][categories][id]=${catId}&[filters][sub_categories][id][$eq]=${subCatId}`
     }
     else {
       return mainUrl

@@ -8,8 +8,8 @@ const AboutUs = lazy(() => import("./pages/Aboutus/Aboutus"));
 const AllProducts = lazy(() => import("./pages/AllProducts/AllProducts"));
 const ContactUs = lazy(() => import("./pages/Contact/ContactUs"));
 const Privacy = lazy(() => import("./pages/PrivacyPolicy/Privacy"));
-// const Product = lazy(() => import("./pages/Product/Product"));
-const List = lazy(()=> import("../src/components/List/List"))
+ const Product = lazy(() => import("./pages/Product/Product"));
+// const List = lazy(()=> import("../src/components/List/List"))
  const Products = lazy(() => import("./pages/Products/Products"));
 const Return = lazy(() => import("./pages/ReturnPolicy/Return"));
 const Shipping = lazy(() => import("./pages/ShippingPolicy/Shipping"));
@@ -24,9 +24,9 @@ const Router = () => (
 
       <Route path="/products/:id" element={<Products />} />
       <Route path="/allproducts" element={<AllProducts />} />
-      <Route path="/allproducts/:id" element={<AllProducts />} />
+      <Route path="/allproducts/:catId/:subCatId" element={<AllProducts />} />
       <Route path="/privacy-policy" element={<Privacy />} />
-     <Route path="/product/:id" element={<List />} />
+     <Route path="/product/:id" element={<Product />} />
 
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/return-policy" element={<Return />} />
