@@ -158,6 +158,7 @@ function Filter(props) {
                         <Typography float="right" component="span" align="center" justify="right" variant='subtitle1'>{active ? "—" : "+"} </Typography>
                     </Grid>
                 </Grid>
+            </Grid>
             {active && <Grid item xs={12} >
             <Grid container item xs={12}>
                 {category && category?.map((items) => ( <Grid item xs={6} > 
@@ -188,7 +189,6 @@ function Filter(props) {
                 ))}
                 </Grid>
             </Grid>}
-            </Grid>
             <Grid item xs={12} onClick={priceCategoryActive} >
                 <Grid container item xs={12}>
                     <Grid item xs={6} >
