@@ -9,8 +9,8 @@ const Footer = () => {
       <div className="top">
         <div className="item">
           <h1>Categories</h1>
-          <Link to='/products/1'><span>Women</span></Link>
-          <Link to='/products/1'><span>Men</span></Link>
+          {/* <Link to='/products/1'><span>Women</span></Link>
+          <Link to='/products/1'><span>Men</span></Link> */}
           <Link to='/products/1'><span>Shoes</span></Link>
           <Link to='/products/1'><span>Accessories</span></Link>
           <Link to='/products/1'><span>New arrivals</span></Link>

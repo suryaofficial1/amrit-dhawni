@@ -8,7 +8,7 @@ import { padding } from '@mui/system';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { makeRequest } from '../../makeRequest';
 
@@ -231,9 +231,9 @@ function Filter(props) {
       </Grid>}
 
       <Grid item xs={12} className={classes.appBtn}>
-        <Button variant="contained" color="primary"
+      <Link to="/allproducts">  <Button variant="contained" color="primary"
           onClick={() => props.applyFilter(sort,categoryId,maxPrice,subCategoryId)}
-        >Apply</Button>
+        >Apply</Button></Link>
       </Grid>
         </Grid>
     </div>

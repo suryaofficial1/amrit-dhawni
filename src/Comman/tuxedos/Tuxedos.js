@@ -8,12 +8,14 @@ const Tuxedos = () => {
     {
       image: img1,
       heading: "Bandhgalas",
-      btnTitle:"Shop Now"
+      btnTitle:"Shop Now",
+      url:'/allproducts/1'
     },
     {
       image: img2,
       heading: "Ornamented Tuxedos",
-      btnTitle:"Shop Now"
+      btnTitle:"Shop Now",
+      url:'/allproducts/1'
     },
   ];
 

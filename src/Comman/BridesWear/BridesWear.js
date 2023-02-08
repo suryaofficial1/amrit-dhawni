@@ -40,12 +40,14 @@ const BridesWear = () => {
         {
             image: img3,
             heading: "Lehnga Set's",
-            btnTitle: "Shop Now"
+            btnTitle: "Shop Now",
+            url:'/'
         },
         {
             image: img4,
             heading: "Cocktail Gown's",
-            btnTitle: "Shop Now"
+            btnTitle: "Shop Now",
+            url:'/'
         },
     ];
     const handleClick = (e, title) => {

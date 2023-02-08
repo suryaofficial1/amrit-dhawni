@@ -28,12 +28,14 @@ const GroomsWear = () => {
     {
       image: img1,
       heading: "Sherwani's",
-      btnTitle:"Shop Now"
+      btnTitle:"Shop Now",
+      url:'/allproducts/1'
     },
     {
       image: img2,
       heading: "Sherwani's",
-      btnTitle:"Shop Now"
+      btnTitle:"Shop Now",
+      url:'/allproducts/1'
     },
   ];
 

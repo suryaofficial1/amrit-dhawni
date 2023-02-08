@@ -28,12 +28,14 @@ const Appointment = () => {
         {
             image: img1,
             heading: "",
-            btnTitle:"Book Now"
+            btnTitle:"Book Now",
+            url:'contact-us'
         },
         {
             image: img2,
             heading: "",
-            btnTitle:"Book Now"
+            btnTitle:"Book Now",
+            url:'contact-us'
         },
     ];
     const handleClick = (e, title) => {
@@ -56,7 +58,7 @@ const Appointment = () => {
                 </Grid>
             </Hidden>
             <Grid item xs={12} md={8}>
-                <Slider sliderData={sliderData} />
+                <Slider sliderData={sliderData}  />
             </Grid>
             <Hidden mdUp>
                 <Grid item xs={12} md={4} className={classes.viewProduct}>

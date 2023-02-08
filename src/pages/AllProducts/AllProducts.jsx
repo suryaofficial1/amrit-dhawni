@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 const AllProducts = ({ type }) => {
 
     var {catId, subCatId} = useParams();
+
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState(null);
   const [page, setPage] = React.useState(0);
@@ -56,8 +57,11 @@ const AllProducts = ({ type }) => {
     else if (filter.sort != '' && filter.categoryId > 0 && filter.maxPrice > 0) {
       return mainUrl + `&sort=price:${filter.sort}&[filters][categories][id]=${filter.categoryId}${filter.subCategoryId.map((item) => `&[filters][sub_categories][id][$in]=${item}`)}&[filters][price][$lt]=${filter.maxPrice}`
     }
-    else if (!isNaN(catId)) {
+    else if (!isNaN(catId) && subCatId != undefined) {
       return mainUrl + `&[filters][categories][id]=${catId}&[filters][sub_categories][id][$eq]=${subCatId}`
+    }
+    else if (!isNaN(catId) && subCatId === undefined) {
+      return mainUrl + `&[filters][categories][id]=${catId}`
     }
     else {
       return mainUrl
@@ -70,6 +74,7 @@ const AllProducts = ({ type }) => {
       setLoading(true);
       let url = getUrl(filter)
       let apiUrl = url.replaceAll(',', '')
+      console.log("-----------cccccccccccc--------",apiUrl)
       await makeRequest.get(apiUrl).then((_res) => {
         if (_res.status === 200) {
           setLoading(false);
@@ -86,7 +91,7 @@ const AllProducts = ({ type }) => {
   useEffect(() => {
     fetchAllProduct()
 
-  }, [page, filter]);
+  }, [page, filter,catId, subCatId]);
 
   const toggleDrawer = () => {
     setOpen(!open)

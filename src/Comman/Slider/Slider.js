@@ -54,7 +54,7 @@ const Slider = (props) => {
                 )}
                 <div class="centerTextTitle">
                   {slide.heading && <h2 className="imageTitle">{index === currentSlide ? slide.heading : ''}</h2>}
-                  {index === currentSlide ?  <Link className="link"  to="/"> <button className="shopNowButton">  {slide.btnTitle} </button> </Link>: ''}
+                  {index === currentSlide ?  <Link className="link" to={`${slide.url}`}> <button className="shopNowButton">  {slide.btnTitle} </button> </Link>: ''}
                 </div>
 
               </div>

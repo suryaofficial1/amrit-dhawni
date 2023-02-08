@@ -36,7 +36,8 @@ const Shoes = () => {
         {
             image: img2,
             heading: "FOOTWEAR",
-            btnTitle:"Shop Now"
+            btnTitle:"Shop Now",
+            url:'/allproducts/2'
         },
     ];
     const handleClick = (e, title) => {
